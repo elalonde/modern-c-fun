@@ -1,0 +1,31 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-O0",
+      "-g3",
+      "-fno-omit-frame-pointer",
+      "-fsanitize=address,undefined",
+      "-fno-sanitize-recover=all",
+      "-Wall",
+      "-Wextra",
+      "-Wshadow",
+      "-Wconversion",
+      "-Wsign-conversion",
+      "-Wstrict-prototypes",
+      "-Wmissing-prototypes",
+      "-Wvla",
+      "-Wcast-align",
+      "-Wformat=2",
+      "-Wnull-dereference",
+      "-Wundef",
+      "-c",
+      "-o",
+      "../build/probe_analyzer/probe_analyzer.o",
+      "probe_analyzer.c"
+    ],
+    "directory": "/home/elalonde/ws/c-roadmap/tier0/probe_analyzer",
+    "file": "/home/elalonde/ws/c-roadmap/tier0/probe_analyzer/probe_analyzer.c",
+    "output": "/home/elalonde/ws/c-roadmap/tier0/build/probe_analyzer/probe_analyzer.o"
+  }
+]

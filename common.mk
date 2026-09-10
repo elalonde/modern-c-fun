@@ -9,9 +9,11 @@ CWARNINGS = -Wall -Wextra -Wshadow -Wconversion -Wsign-conversion \
 	    -Wformat=2 -Wnull-dereference -Wundef
 CFLAGS = -O0 -g3 -fno-omit-frame-pointer -fsanitize=address,undefined \
 	 -fno-sanitize-recover=all
+DEPFLAGS = -MMD -MP
 CC = gcc
 LD = ld
 LDFLAGS =
+BIN_TARGET_ARGS =
 
 ifeq ($(WERROR), 1)
 CWARNINGS := $(CWARNINGS) -Werror
@@ -44,7 +46,7 @@ $(BIN_TARGET): $(OBJS)
 	$(CC) $(CFLAGS) $(CWARNINGS) $(OBJS) -o $@
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c | $(BUILD_DIR)
-	$(CC) $(CFLAGS) $(CWARNINGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(DEPFLAGS) $(CWARNINGS) -c $< -o $@
 
 $(BUILD_DIR):
 	mkdir -p $@
