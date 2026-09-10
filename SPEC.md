@@ -26,14 +26,37 @@ Build the harness that every later exercise uses. The harness has two parts: a s
 
 ### Targets
 
-| Target | Flags | Purpose |
-|---|---|---|
-| `debug` (default) | `-O0 -g3 -fno-omit-frame-pointer -fsanitize=address,undefined -fno-sanitize-recover=all` | Daily build. Every sanitizer report is a test failure. |
-| `hardened` | `-O2 -g -D_FORTIFY_SOURCE=3 -fstack-protector-strong -fstack-clash-protection -fcf-protection=full -Wl,-z,relro,-z,now -Wl,-z,noexecstack` | Release build with the hardening set that distributions use. |
-| `analyze` | `-O2 -fanalyzer`, then `clang-tidy` on the sources | Static analysis. Output only. No binary is required. |
-| `clean` | | Removes all build output. |
+| Target | Purpose |
+|---|---|
+| `debug` (default) | Daily build. Every sanitizer report is a test failure. |
+| `hardened` | Release build with the hardening set that distributions use. |
+| `analyze` | Static analysis. Output only. No binary is required. |
+| `clean` | Removes all build output. |
 
-Every target uses the language-standard setting and the warning set below.
+Flags per target. Every target also uses the language-standard setting and the warning set.
+
+`debug`:
+
+```
+-O0 -g3 -fno-omit-frame-pointer
+-fsanitize=address,undefined -fno-sanitize-recover=all
+```
+
+`hardened`:
+
+```
+-O2 -g -D_FORTIFY_SOURCE=3
+-fstack-protector-strong -fstack-clash-protection -fcf-protection=full
+-Wl,-z,relro,-z,now -Wl,-z,noexecstack
+```
+
+`analyze`:
+
+```
+-O2 -fanalyzer
+```
+
+then `clang-tidy` on the sources.
 
 Warning set, all targets:
 
